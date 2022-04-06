@@ -33,3 +33,13 @@ D:\PNgyuentransfer\cecs475sp20\RepositoryDesign\RepositoryDesign\DomainModel\obj
 D:\PNgyuentransfer\cecs475sp20\RepositoryDesign\RepositoryDesign\DomainModel\obj\Debug\DomainModel.csproj.CopyComplete
 D:\PNgyuentransfer\cecs475sp20\RepositoryDesign\RepositoryDesign\DomainModel\obj\Debug\DomainModel.dll
 D:\PNgyuentransfer\cecs475sp20\RepositoryDesign\RepositoryDesign\DomainModel\obj\Debug\DomainModel.pdb
+C:\Users\audre\Documents\Github\CECS475-Spring2022\RepositoryDesign\RepositoryDesign\DomainModel\bin\Debug\DomainModel.dll.config
+C:\Users\audre\Documents\Github\CECS475-Spring2022\RepositoryDesign\RepositoryDesign\DomainModel\bin\Debug\DomainModel.dll
+C:\Users\audre\Documents\Github\CECS475-Spring2022\RepositoryDesign\RepositoryDesign\DomainModel\bin\Debug\DomainModel.pdb
+C:\Users\audre\Documents\Github\CECS475-Spring2022\RepositoryDesign\RepositoryDesign\DomainModel\bin\Debug\EntityFramework.dll
+C:\Users\audre\Documents\Github\CECS475-Spring2022\RepositoryDesign\RepositoryDesign\DomainModel\bin\Debug\EntityFramework.xml
+C:\Users\audre\Documents\Github\CECS475-Spring2022\RepositoryDesign\RepositoryDesign\DomainModel\obj\Debug\DomainModel.csproj.AssemblyReference.cache
+C:\Users\audre\Documents\Github\CECS475-Spring2022\RepositoryDesign\RepositoryDesign\DomainModel\obj\Debug\DomainModel.csproj.CoreCompileInputs.cache
+C:\Users\audre\Documents\Github\CECS475-Spring2022\RepositoryDesign\RepositoryDesign\DomainModel\obj\Debug\DomainModel.csproj.CopyComplete
+C:\Users\audre\Documents\Github\CECS475-Spring2022\RepositoryDesign\RepositoryDesign\DomainModel\obj\Debug\DomainModel.dll
+C:\Users\audre\Documents\Github\CECS475-Spring2022\RepositoryDesign\RepositoryDesign\DomainModel\obj\Debug\DomainModel.pdb

@@ -19,6 +19,7 @@ namespace ConsoleClient
         /// </summary>
         public static void run()
         {
+            
             bool repeat = true;
             int input;
 
@@ -83,7 +84,18 @@ namespace ConsoleClient
             //object to the database using the businessLayer object, and display
             //a message to the console window that the teacher has been added
             //to the database.
-            
+            Mm.BusinessLayer.BuinessLayer bl = new Mm.BusinessLayer.BuinessLayer();
+            Console.WriteLine("Teacher Name ?");
+            string name = Console.ReadLine();
+
+            Teacher temp = new Teacher
+            {
+                TeacherName = name
+            };
+
+            bl.AddTeacher(temp);
+
+
         }
 
         /// <summary>
@@ -91,6 +103,7 @@ namespace ConsoleClient
         /// </summary>
         public static void updateTeacher()
         {
+            Mm.BusinessLayer.BuinessLayer bl = new Mm.BusinessLayer.BuinessLayer();
             Menu.displaySearchOptions();
             int input = Validator.getOptionInput();
             listTeachers();
@@ -105,12 +118,47 @@ namespace ConsoleClient
                 //object to the database using the businessLayer object.
                 //If teacher is null, display a message "Teacher does not exist"
                 //to the database.
-                
+
+                Console.WriteLine("Teacher Name ?");
+                string name = Console.ReadLine();
+                Teacher temp = bl.GetTeacherByName(name);
+                if (temp == null)
+                {
+                    Console.WriteLine("Teacher not found!");
+                }
+                else
+                {
+                    int id = temp.TeacherId;
+                    Teacher teacher = bl.GetTeacherById(id);
+                    if (teacher == null)
+                    {
+                        Console.WriteLine("Teacher not found!");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Enter new teacher name: ");
+                        teacher.TeacherName = Console.ReadLine();
+                        bl.UpdateTeacher(teacher);
+                    }
+                }
+
             }
             //find by a teacher's id
             else if (input == 2)
             {
-                
+                Console.WriteLine("Teacher ID ?");
+                int id = Convert.ToInt32(Console.ReadLine());
+                Teacher teacher = bl.GetTeacherById(id);
+                if (teacher == null)
+                {
+                    Console.WriteLine("Teacher not found!");
+                }
+                else
+                {
+                    Console.WriteLine("Enter new teacher name: ");
+                    teacher.TeacherName = Console.ReadLine();
+                    bl.UpdateTeacher(teacher);
+                }
             }
         }
 
@@ -119,13 +167,30 @@ namespace ConsoleClient
         /// </summary>
         public static void removeTeacher()
         {
+            Mm.BusinessLayer.BuinessLayer bl = new Mm.BusinessLayer.BuinessLayer();
             listTeachers();
             int id = Validator.getId();
             //YOUR CODE TO REMOVE A TEACHER THE DATABASE
             //Get the teacher. If the teacher object is not null, display the message that
             //the teacher has been removed. Remove the teacher from the database.
-            
-            
+            Teacher teacher = bl.GetTeacherById(id);
+            if (teacher == null)
+            {
+                Console.WriteLine("Teacher not found !");
+            }
+            else
+            {
+                Teacher temp = (Teacher)bl.GetCoursesByTeacherId(id);
+                foreach (var i in temp.Courses)
+                {
+                    Course c = bl.GetCourseById(i.CourseId);
+                    c.TeacherId = null;
+                    bl.UpdateCourse(c);
+                }
+
+                bl.RemoveTeacher(teacher);
+            }
+
         }
 
         /// <summary>
@@ -136,6 +201,17 @@ namespace ConsoleClient
             //the return to an object of type IList<Teacher>
             //Display the all the teacher id and name.
             //Your code
+            Mm.BusinessLayer.BuinessLayer bl = new Mm.BusinessLayer.BuinessLayer();
+            IList<Teacher> allTeachers = bl.GetAllTeachers();
+            Console.WriteLine();
+            Console.WriteLine("ID Teacher Name");
+            foreach (Teacher temp in allTeachers)
+            {
+                Console.WriteLine(temp.TeacherId + "  " + temp.TeacherName);
+            }
+            Console.WriteLine();
+
+
         }
 
         /// <summary>
@@ -143,6 +219,7 @@ namespace ConsoleClient
         /// </summary>
         public static void listTeacherCourses()
         {
+            Mm.BusinessLayer.BuinessLayer bl = new Mm.BusinessLayer.BuinessLayer();
             listTeachers();
             int id = Validator.getId();
             //Get a Teacher object by on the teacher id input
@@ -150,16 +227,22 @@ namespace ConsoleClient
             //   Display teacher id and teacher name
             //   List all the course the teacher teaches
             //Else
-                 //Display a message " No course for the teacher id and name". Display
-                 //the teacher's id and name
-            
-
+            //Display a message " No course for the teacher id and name". Display
+            //the teacher's id and name
+            Teacher teacher = (Teacher)bl.GetCoursesByTeacherId(id);
+            if (teacher == null || teacher.Courses.Count == 0)
+            {
+                Console.WriteLine("No courses associated with this Teacher ID");
             }
             else
             {
-                Console.WriteLine("Teacher does not exist.");
-            };
+                foreach (Course c in teacher.Courses)
+                    Console.WriteLine("- " + c.CourseName);
+            }
+
         }
+
+        
 
         //CRUD for courses
 
@@ -168,6 +251,7 @@ namespace ConsoleClient
         /// </summary>
         public static void addCourse()
         {
+            Mm.BusinessLayer.BuinessLayer bl = new Mm.BusinessLayer.BuinessLayer();
             Console.WriteLine("Enter a course name: ");
             string courseName = Console.ReadLine();
 
@@ -177,23 +261,24 @@ namespace ConsoleClient
             //Get the teacher object using the id
             //your code
 
-            if (teacher != null)
+            Teacher teacher = bl.GetTeacherById(id);
+            if (teacher == null)
             {
-                //create course with name, teacher id, and set entity state to added
-                //your code
-
-                //add course to teacher
-                //Set the Entity of the teacher object modified
-                //Set the entity state of each course from the teacher to Unchanged
-                //Add the course to the teacher
-                //Update the teacher by calling a method from the class BusinessLayer
-                //Display a message the course name has been added to the database.
-                //your code
+                Console.WriteLine("Teacher not found!");
             }
             else
             {
-                Console.WriteLine("Teacher does not exist.");
-            };
+                Console.WriteLine("Course Name? ");
+                string cName = Console.ReadLine();
+                //Console.WriteLine("Course Location? ");
+                //string cLocation = Console.ReadLine();
+                Course temp = new Course()
+                {
+                    CourseName = cName,
+                    TeacherId = id
+                };
+                bl.AddCourse(temp);
+            }
         }
 
         /// <summary>
@@ -201,6 +286,7 @@ namespace ConsoleClient
         /// </summary>
         public static void updateCourse()
         {
+            Mm.BusinessLayer.BuinessLayer bl = new Mm.BusinessLayer.BuinessLayer();
             Menu.displaySearchOptions();
             int input = Validator.getOptionInput();
             listCourses();
@@ -209,32 +295,98 @@ namespace ConsoleClient
             if (input == 1)
             {
                 Console.WriteLine("Enter a course's name: ");
-                //Get a course object by name
-                //Your code
-                if (course != null)
-                {   //Update the course
-                    //Your code
-                    //Your code
+                string name = Console.ReadLine();
+                Course tempCourse = bl.GetCourseByName(name);
+                if (tempCourse == null)
+                {
+                    Console.WriteLine("Course not found!");
                 }
                 else
                 {
-                    Console.WriteLine("Course does not exist.");
-                };
+                    int id = tempCourse.CourseId;
+                    Course course = bl.GetCourseById(id);
+                    if (course == null)
+                    {
+                        Console.WriteLine("Course not found!");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Enter new course name: ");
+                        course.CourseName = Console.ReadLine();
+                        IEnumerable<Teacher> allTeachers = bl.GetAllTeachers();
+                        Console.WriteLine("");
+                        Console.WriteLine("Current available Teachers");
+                        foreach (Teacher temp in allTeachers)
+                        {
+                            Console.WriteLine(temp.TeacherId + "  " + temp.TeacherName);
+                        }
+
+                        Console.WriteLine("Current teacher id is " + course.TeacherId + " . Please enter new teacher id: ");
+                        int idTemp = Convert.ToInt32(Console.ReadLine());
+                        bool flag = false;
+                        foreach (Teacher temp in allTeachers)
+                        {
+                            if (idTemp == temp.TeacherId)
+                            {
+                                flag = true;
+                            }
+                        }
+                        if (flag == true)
+                        {
+                            course.TeacherId = idTemp;
+                            bl.UpdateCourse(course);
+                        }
+                        else
+                        {
+                            Console.WriteLine("Teacher ID is invalid");
+                        }
+                    }
+                }
             }
             //find course by id
             else if (input == 2)
             {
-                int id = Validator.getId();
-                //Get the course by course id
-                //Your code
-                if (course != null)
-                {  //Update the course
-                    //Your code
+                Console.WriteLine("Course ID ?");
+                int id = Convert.ToInt32(Console.ReadLine());
+                Course course = bl.GetCourseById(id);
+                if (course == null)
+                {
+                    Console.WriteLine("Course not found");
                 }
                 else
                 {
-                    Console.WriteLine("Course does not exist.");
-                };
+                    Console.WriteLine("Enter new course name: ");
+                    course.CourseName = Console.ReadLine();
+
+                    IEnumerable<Teacher> allTeachers = bl.GetAllTeachers();
+                    Console.WriteLine("");
+                    Console.WriteLine("Current available Teachers");
+                    foreach (Teacher temp in allTeachers)
+                    {
+                        Console.WriteLine(temp.TeacherId + "  " + temp.TeacherName);
+                    }
+
+                    Console.WriteLine("Current teacher id is " + course.TeacherId + " . Please enter new teacher id: ");
+                    int idTemp = Convert.ToInt32(Console.ReadLine());
+                    bool flag = false;
+                    foreach (Teacher temp in allTeachers)
+                    {
+                        if (idTemp == temp.TeacherId)
+                        {
+                            flag = true;
+                        }
+                    }
+                    if (flag == true)
+                    {
+                        course.TeacherId = idTemp;
+                        bl.UpdateCourse(course);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Teacher ID is invalid");
+                    }
+
+                }
             }
         }
 
@@ -243,19 +395,20 @@ namespace ConsoleClient
         /// </summary>
         public static void removeCourse()
         {
+            Mm.BusinessLayer.BuinessLayer bl = new Mm.BusinessLayer.BuinessLayer();
             listCourses();
-            int id = Validator.getId();
-            //Get a Course object by id
-            //Your code
-            if (course != null)
-            {   //Display the message the course name has been removed
-                //Remove the course
-                //Your code
+            Console.WriteLine("Course ID to be deleted?");
+            int id = Convert.ToInt32(Console.ReadLine());
+
+            Course course = bl.GetCourseById(id);
+            if (course == null)
+            {
+                Console.WriteLine("Course not found!");
             }
             else
             {
-                Console.WriteLine("Course does not exist.");
-            };
+                bl.RemoveCourse(course);
+            }
         }
 
 
@@ -266,7 +419,18 @@ namespace ConsoleClient
         {   //List all the courses by id and name
             //Display course id and course name
             //Your code
-            
+            Mm.BusinessLayer.BuinessLayer bl = new Mm.BusinessLayer.BuinessLayer();
+            IList<Course> allCourses = bl.GetAllCourses();
+            Console.WriteLine();
+            Console.WriteLine($"\t  {"ID",-5}" + $"{"Course name",-15}" + $"{"TeacherID",-15}");
+            //Console.WriteLine("ID Course Name  TeacherID");
+            foreach (Course temp in allCourses)
+            {
+                Console.WriteLine($"\t  {temp.CourseId,-5}" + $"{temp.CourseName,-15}" + $"{temp.TeacherId,-15}");
+                //Console.WriteLine(temp.CourseId + "  " + temp.CourseName+ "       " + temp.TeacherId);
+            }
+            Console.WriteLine();
+
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.0.31919.166
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mm.DataAccessLayer", "Mm.DataAccessLayer\Mm.DataAccessLayer.csproj", "{7653688F-D9FA-4B5F-AF50-7893E4BC1EEC}"
 EndProject
@@ -10,8 +10,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mm.BusinessLayer", "Mm.BusinessLayer\Mm.BusinessLayer.csproj", "{7AADD212-F883-42AC-B199-6C77F79DA123}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleClient", "ConsoleClient\ConsoleClient.csproj", "{CFFC41FD-0161-48EE-BA19-EF80CBFEC96F}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lab4", "Lab4\Lab4.csproj", "{C7B0949C-574A-4023-9EE0-EB5537D440F5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,15 +33,8 @@ Global
 		{CFFC41FD-0161-48EE-BA19-EF80CBFEC96F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CFFC41FD-0161-48EE-BA19-EF80CBFEC96F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CFFC41FD-0161-48EE-BA19-EF80CBFEC96F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C7B0949C-574A-4023-9EE0-EB5537D440F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C7B0949C-574A-4023-9EE0-EB5537D440F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C7B0949C-574A-4023-9EE0-EB5537D440F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C7B0949C-574A-4023-9EE0-EB5537D440F5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {4337963E-AAE7-4775-BAC9-805F5C79334D}
 	EndGlobalSection
 EndGlobal
