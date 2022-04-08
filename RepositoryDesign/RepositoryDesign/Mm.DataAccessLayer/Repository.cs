@@ -16,7 +16,7 @@ namespace Mm.DataAccessLayer
         {
             this.context = datacontext;
             dbSet = datacontext.Set<T>();
-            
+
         }
 
         public void Insert(T entity)

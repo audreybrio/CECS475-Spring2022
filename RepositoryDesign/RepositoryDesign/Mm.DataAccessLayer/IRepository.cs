@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 namespace Mm.DataAccessLayer
 {
     public interface IRepository<T> : IDisposable
+    internal interface IRepository
     {
         void Insert(T entity);
 

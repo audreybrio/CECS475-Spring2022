@@ -26,7 +26,7 @@ namespace ConsoleClient
         public static int getOptionInput()
         {
             int input = checkNumericality();
-            while (input != 1 && input != 2)
+            while (input != 1 && input != 2 && input != 3)
             {
                 Console.WriteLine("Not a valid selection.");
                 input = checkNumericality();

@@ -38,5 +38,12 @@ namespace ConsoleClient
             Console.WriteLine("[1] find by name");
             Console.WriteLine("[2] find by id");
         }
+
+        public static void displaySearchOptions2()
+        {
+            Console.WriteLine("[1] find by name");
+            Console.WriteLine("[2] find by id");
+            Console.WriteLine("[3] reassign course");    
+        }
     }
 }

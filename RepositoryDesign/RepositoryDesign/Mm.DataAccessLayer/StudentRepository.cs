@@ -10,7 +10,7 @@ namespace Mm.DataAccessLayer
     public class StudentRepository : Repository<Student>, IStudentRepository
     {
 
-        public StudentRepository(): base(new SchoolDBEntities())
+        public StudentRepository() : base(new SchoolDBEntities())
         {
         }
 
