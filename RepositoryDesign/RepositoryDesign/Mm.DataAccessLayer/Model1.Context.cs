@@ -9,22 +9,23 @@
 
 namespace Mm.DataAccessLayer
 {
-    using DomainModel;
+    using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-
+    using DomainModel;
+    
     public partial class SchoolDBEntities : DbContext
     {
         public SchoolDBEntities()
             : base("name=SchoolDBEntities")
         {
         }
-
+    
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();
         }
-
+    
         public DbSet<Course> Courses { get; set; }
         public DbSet<Standard> Standards { get; set; }
         public DbSet<Student> Students { get; set; }

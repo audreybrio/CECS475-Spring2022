@@ -95,7 +95,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_StudentCourse_Course">
-    <End Role="Course" Type="Self.Course" Multiplicity="1" />
+    <End Role="Course" Type="Self.Course" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="StudentCourse" Type="Self.StudentCourse" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Course">
@@ -103,20 +105,6 @@
       </Principal>
       <Dependent Role="StudentCourse">
         <PropertyRef Name="CourseId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_StudentCourse_Student">
-    <End Role="Student" Type="Self.Student" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="StudentCourse" Type="Self.StudentCourse" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Student">
-        <PropertyRef Name="StudentID" />
-      </Principal>
-      <Dependent Role="StudentCourse">
-        <PropertyRef Name="StudentId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -155,10 +143,6 @@
     </AssociationSet>
     <AssociationSet Name="FK_StudentCourse_Course" Association="Self.FK_StudentCourse_Course">
       <End Role="Course" EntitySet="Course" />
-      <End Role="StudentCourse" EntitySet="StudentCourse" />
-    </AssociationSet>
-    <AssociationSet Name="FK_StudentCourse_Student" Association="Self.FK_StudentCourse_Student">
-      <End Role="Student" EntitySet="Student" />
       <End Role="StudentCourse" EntitySet="StudentCourse" />
     </AssociationSet>
     <AssociationSet Name="FK_Teacher_Standard" Association="Self.FK_Teacher_Standard">
