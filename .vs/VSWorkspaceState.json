@@ -1,0 +1,16 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\RepositoryDesign",
+    "\\RepositoryDesign\\RepositoryDesign",
+    "\\RepositoryDesign\\RepositoryDesign\\ConsoleApplication1",
+    "\\RepositoryDesign\\RepositoryDesign\\ConsoleClient",
+    "\\RepositoryDesign\\RepositoryDesign\\DomainModel",
+    "\\RepositoryDesign\\RepositoryDesign\\Mm.BusinessLayer",
+    "\\RepositoryDesign\\RepositoryDesign\\Mm.DataAccessLayer",
+    "\\RepositoryDesign\\RepositoryDesign\\packages",
+    "\\RepositoryDesign\\RepositoryDesign\\SharedProject1"
+  ],
+  "SelectedNode": "\\RepositoryDesign\\RepositoryDesign\\RepositoryDesign.sln",
+  "PreviewInSolutionExplorer": false
+}
