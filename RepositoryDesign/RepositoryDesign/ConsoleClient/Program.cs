@@ -85,7 +85,7 @@ namespace ConsoleClient
             //a message to the console window that the teacher has been added
             //to the database.
            
-            Console.WriteLine("Teacher Name ?");
+            Console.WriteLine("Enter a teacher name:");
             string name = Console.ReadLine();
 
             Teacher temp = new Teacher
