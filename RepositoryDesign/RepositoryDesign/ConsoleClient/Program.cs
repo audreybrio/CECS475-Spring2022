@@ -85,7 +85,7 @@ namespace ConsoleClient
             //a message to the console window that the teacher has been added
             //to the database.
            
-            Console.WriteLine("Enter a teacher name:");
+            Console.WriteLine("Enter a teacher name: ");
             string name = Console.ReadLine();
 
             Teacher temp = new Teacher
@@ -94,6 +94,7 @@ namespace ConsoleClient
             };
             temp.EntityState = EntityState.Added;
             businessLayer.AddTeacher(temp);
+            Console.WriteLine("{0} has been added to the database.", name);
 
 
         }
